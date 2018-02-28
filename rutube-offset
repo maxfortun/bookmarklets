@@ -1,0 +1,19 @@
+javascript:(function(){
+	var href=window.location.href;
+	var regex = /bmstart=(\d+)/g;
+	var bmstart=null;
+	try {
+		var result = regex.exec(href);
+		bmstart=result[1];
+	} catch(e) {};
+	var minutes=window.prompt("Offset in minutes", 5);
+	var seconds=minutes*60;
+	if(bmstart == null) {
+		href=href+'&bmstart='+seconds;
+	} else {
+		href=href.replace(regex,'bmstart='+seconds);
+	};
+	window.location.href=href;
+})();
+
+
