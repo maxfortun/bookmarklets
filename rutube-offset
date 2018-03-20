@@ -2,11 +2,14 @@ javascript:(function(){
 	var href=window.location.href;
 	var regex = /bmstart=(\d+)/g;
 	var bmstart=null;
+	var minutes=5;
 	try {
 		var result = regex.exec(href);
 		bmstart=result[1];
-	} catch(e) {};
-	var minutes=window.prompt("Offset in minutes", 5);
+		minutes=bmstart/60;
+	} catch(e) { };
+	minutes=window.prompt("Offset in minutes", minutes);
+	if(!minutes) { return; }
 	var seconds=minutes*60;
 	if(bmstart == null) {
 		href=href+'&bmstart='+seconds;
